@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useWeb3React } from "@web3-react/core";
-import Web3 from "web3";
+//import Web3 from "web3";
 import { injected } from "./connectors";
 
 export function useEagerConnect() {
@@ -9,7 +9,7 @@ export function useEagerConnect() {
   const [tried, setTried] = useState(false);
 
   useEffect(() => {
-    injected.isAuthorized().then(isAuthorized => {
+    injected.isAuthorized().then((isAuthorized) => {
       if (isAuthorized) {
         activate(injected, undefined, true).catch(() => {
           setTried(true);
@@ -36,19 +36,19 @@ export function useInactiveListener(suppress = false) {
   useEffect(() => {
     const { ethereum } = window;
     if (ethereum && ethereum.on && !active && !error && !suppress) {
-      const handleChainChanged = chainId => {
+      const handleChainChanged = (chainId) => {
         console.log("chainChanged", chainId);
         activate(injected);
       };
 
-      const handleAccountsChanged = accounts => {
+      const handleAccountsChanged = (accounts) => {
         console.log("accountsChanged", accounts);
         if (accounts.length > 0) {
           activate(injected);
         }
       };
 
-      const handleNetworkChanged = networkId => {
+      const handleNetworkChanged = (networkId) => {
         console.log("networkChanged", networkId);
         activate(injected);
       };

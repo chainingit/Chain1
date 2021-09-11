@@ -15,14 +15,23 @@ const POLLING_INTERVAL = 8000;
 const RPC_URLS = {
   1: "https://mainnet.infura.io/v3/84842078b09946638c03157f83405213",
   4: "https://rinkeby.infura.io/v3/84842078b09946638c03157f83405213"
+  //137: "https://polygon-mainnet.infura.io/v3/84842078b09946638c03157f83405213"
+  //80001: "https://polygon-mumbai.infura.io/v3/84842078b09946638c03157f83405213"
 };
 
 export const injected = new InjectedConnector({
-  supportedChainIds: [1, 3, 4, 5, 42, 137, 80001]
+  supportedChainIds: [1, 4, 137, 80001]
+  //supportedChainIds: [1, 4, 137, 80001]
 });
 
 export const network = new NetworkConnector({
-  urls: { 1: RPC_URLS[1], 4: RPC_URLS[4] },
+  urls: {
+    1: RPC_URLS[1],
+    4: RPC_URLS[4]
+    //137: RPC_URLS[137],
+    // 80001: RPC_URLS[80001]
+  },
+  //defaultChainId: 1,
   defaultChainId: 1,
   pollingInterval: POLLING_INTERVAL
 });
